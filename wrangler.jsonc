@@ -1,0 +1,8 @@
+// Cloudflare-Konfiguration: statische Website ohne Build-Schritt
+{
+  "name": "schilcher-haeuser",
+  "compatibility_date": "2025-09-01",
+  "assets": {
+    "directory": "./"
+  }
+}
