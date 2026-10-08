@@ -77,7 +77,8 @@
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
     navLinks.forEach(function (a) {
-      var t = $(a.getAttribute('href'));
+      var href = a.getAttribute('href');
+      var t = href.charAt(0) === '#' ? $(href) : null;
       if (t) sectionObs.observe(t);
     });
   }
@@ -101,7 +102,7 @@
 
   function openModal(id) {
     var dlg = document.getElementById(id);
-    if (!dlg) return;
+    if (!dlg) { window.location.href = "index.html#" + id; return; }
     if (openDialog && openDialog !== dlg) closeModal(openDialog, true);
     // Formulare zurücksetzen
     $$('.mf-content', dlg).forEach(function (c) { c.hidden = false; });
@@ -204,7 +205,7 @@
   var grid = $('#house-grid');
   var cards = {};
 
-  HOUSES.forEach(function (h, i) {
+  if (grid) HOUSES.forEach(function (h, i) {
     var card = document.createElement('article');
     card.className = 'house-card reveal status-' + h.status;
     card.style.setProperty('--i', i % 4);
@@ -263,9 +264,11 @@
       '<div><dt>Zimmer</dt><dd>' + h.zimmer + '</dd></div>';
   }
   function openHouse(i) { fillHouse(i); openModal('modal-house'); }
-  $('#hd-prev').addEventListener('click', function () { fillHouse((current - 1 + HOUSES.length) % HOUSES.length); });
-  $('#hd-next').addEventListener('click', function () { fillHouse((current + 1) % HOUSES.length); });
-  $('#hd-cta').addEventListener('click', function () { openExpose(HOUSES[current]); });
+  if ($('#modal-house')) {
+    $('#hd-prev').addEventListener('click', function () { fillHouse((current - 1 + HOUSES.length) % HOUSES.length); });
+    $('#hd-next').addEventListener('click', function () { fillHouse((current + 1) % HOUSES.length); });
+    $('#hd-cta').addEventListener('click', function () { openExpose(HOUSES[current]); });
+  }
   document.addEventListener('keydown', function (e) {
     if (!openDialog || openDialog.id !== 'modal-house') return;
     if (e.key === 'ArrowLeft') $('#hd-prev').click();
@@ -568,6 +571,8 @@
     dot(P.ligist, 3, '#8f8a7c'); label(P.ligist[0] + 9, P.ligist[1] + 4, 'Ligist', { size: 11, fill: '#8f8a7c' });
     dot(P.lieboch, 3, '#8f8a7c'); label(P.lieboch[0] + 9, P.lieboch[1] + 4, 'Lieboch', { size: 11, fill: '#8f8a7c' });
     dot(P.graz, 6); label(P.graz[0] + 14, P.graz[1] + 8, 'Graz', { serif: true, size: 30, weight: 500, fill: '#252C26' });
+    label(P.graz[0] + 16, P.graz[1] + 27, 'ca. 35 Min.', { size: 11, ls: 1, fill: '#6B6A62' });
+    label(122, 484, '↙ Klagenfurt · ca. 1,5 Std.', { size: 11.5, ls: 1, fill: '#6B6A62' });
     dot(P.stainz, 5); label(P.stainz[0] + 13, P.stainz[1] + 8, 'Stainz', { serif: true, size: 26, weight: 500, fill: '#252C26' });
     dot(P.dl, 5); label(P.dl[0] + 13, P.dl[1] + 7, 'Deutschlandsberg', { serif: true, size: 22, weight: 500, fill: '#252C26' });
     label(34, 150, 'KORALPE', { size: 10, ls: 5, fill: '#A79F8E' });
@@ -599,6 +604,13 @@
 
   /* ---------------- Start ---------------- */
   observeReveal($$('.reveal, .reveal-img'));
+
+  // Von Unterseiten: index.html#modal-expose / #modal-termin öffnet das Modal
+  var hashModal = /^#modal-(expose|termin|impressum|datenschutz)$/.exec(window.location.hash);
+  if (hashModal && document.getElementById('modal-' + hashModal[1])) {
+    history.replaceState(null, '', window.location.pathname);
+    setTimeout(function () { openModal('modal-' + hashModal[1]); }, 400);
+  }
   var y = $('#year');
   if (y) y.textContent = new Date().getFullYear();
 })();

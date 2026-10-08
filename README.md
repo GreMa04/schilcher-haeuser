@@ -34,6 +34,8 @@ css/styles.css    Design (Farben, Typografie, Layout, Responsive)
 js/images.js      ALLE Bild-URLs zentral – hier Bilder austauschen
 js/data.js        Daten der 8 Häuser (Flächen, Status, Texte)
 js/main.js        Navigation, Modals, Formulare, Masterplan, Karte
+wein.html         Unterseite Wein & Schilcher (Weingüter Langmann, Trapl)
+kulinarik.html    Unterseite Kulinarik (Rauch-Hof, Buschenschänke)
 ```
 
 ## Inhalte anpassen

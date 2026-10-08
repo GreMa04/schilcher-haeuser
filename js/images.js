@@ -21,5 +21,12 @@ window.IMAGES = {
   noon:         "https://images.unsplash.com/photo-1613109040830-ffdd96756f5e", // Mittag beim Winzer
   afternoon:    "https://images.unsplash.com/photo-1717240049346-b6a9f43f4e1c", // Weinberg am Nachmittag
   evening:      "https://images.unsplash.com/photo-1767555029226-e039c6c67278", // Weinglas im Sonnenuntergang
-  sunset:       "https://images.unsplash.com/photo-1790199376637-e6842cf8bd24"  // Weinberg im Sonnenuntergang
+  sunset:       "https://images.unsplash.com/photo-1790199376637-e6842cf8bd24", // Weinberg im Sonnenuntergang
+
+  // Unterseiten
+  rose:         "https://images.unsplash.com/photo-1767969217506-b28edac04107", // Glas Rosé im Freien
+  cellar:       "https://images.unsplash.com/photo-1783443799503-e1587f423bd0", // Gewölbekeller mit Fässern
+  autumnVines:  "https://images.unsplash.com/photo-1763786470662-07032d65ba5d", // Weinberg im Herbst
+  jause:        "https://images.unsplash.com/photo-1692311358804-34b31f6ef43c", // Brettljause
+  pumpkin:      "https://images.unsplash.com/photo-1789546555448-a973da5874c7"  // Steirische Kürbiskerne
 };
