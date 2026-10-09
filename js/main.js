@@ -606,7 +606,7 @@
   observeReveal($$('.reveal, .reveal-img'));
 
   // Von Unterseiten: index.html#modal-expose / #modal-termin öffnet das Modal
-  var hashModal = /^#modal-(expose|termin|impressum|datenschutz)$/.exec(window.location.hash);
+  var hashModal = /^#modal-(expose|termin|impressum|datenschutz|bildnachweis)$/.exec(window.location.hash);
   if (hashModal && document.getElementById('modal-' + hashModal[1])) {
     history.replaceState(null, '', window.location.pathname);
     setTimeout(function () { openModal('modal-' + hashModal[1]); }, 400);
